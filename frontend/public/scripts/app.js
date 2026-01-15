@@ -483,7 +483,7 @@ function cargarCategorias() {
     };
     
     grid.innerHTML = DATOS.categorias.map(cat => `
-        <a href="catalogo.html?categoria=${cat.id}" class="category-card">
+        <a href="/pages/catalogo.html?categoria=${cat.id}" class="category-card">
             <span class="category-icon" style="color: ${cat.color}">
                 ${iconosSVG[cat.id] || iconosSVG['utilidades']}
             </span>
@@ -498,7 +498,7 @@ function cargarCategoriasFooter() {
     if (!lista) return;
     
     lista.innerHTML = DATOS.categorias.slice(0, 5).map(cat => 
-        `<li><a href="catalogo.html?categoria=${cat.id}">${cat.nombre}</a></li>`
+        `<li><a href="/pages/catalogo.html?categoria=${cat.id}">${cat.nombre}</a></li>`
     ).join('');
 }
 
@@ -513,7 +513,7 @@ function inicializarBusqueda() {
         if (e.key === 'Enter') {
             const termino = this.value.trim();
             if (termino) {
-                window.location.href = `catalogo.html?buscar=${encodeURIComponent(termino)}`;
+                window.location.href = `/pages/catalogo.html?buscar=${encodeURIComponent(termino)}`;
             }
         }
     });
