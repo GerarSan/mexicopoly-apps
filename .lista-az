@@ -1,0 +1,71 @@
+/* ═══════════════════════════════════════════════════════════════
+   MEXICOPOLY - APPS | LISTA A-Z
+   ═══════════════════════════════════════════════════════════════ */
+
+document.addEventListener('DOMContentLoaded', function() {
+    generarListaAZ();
+    generarNavegacionAlfabetica();
+});
+
+function generarListaAZ() {
+    const container = document.getElementById('azList');
+    if (!container) return;
+    
+    // Ordenar productos alfabéticamente
+    const productosOrdenados = [... DATOS.productos]. sort((a, b) => 
+        a.nombre.localeCompare(b.nombre, 'es')
+    );
+    
+    // Agrupar por letra
+    const grupos = {};
+    productosOrdenados. forEach(producto => {
+        const letra = producto.nombre.charAt(0).toUpperCase();
+        if (!grupos[letra]) {
+            grupos[letra] = [];
+        }
+        grupos[letra].push(producto);
+    });
+    
+    // Generar HTML
+    let html = '';
+    Object.keys(grupos).sort().forEach(letra => {
+        html += `
+            <div class="az-group" id="letra-${letra}">
+                <div class="az-letter">${letra}</div>
+                <div class="az-items">
+                    ${grupos[letra].map(p => {
+                        const cat = DATOS.categorias.find(c => c.id === p.categoria);
+                        return `
+                            <div class="az-item">
+                                <span class="az-item-name">${p.icono} ${p. nombre}</span>
+                                <span class="az-item-category">${cat?. nombre || ''}</span>
+                            </div>
+                        `;
+                    }).join('')}
+                </div>
+            </div>
+        `;
+    });
+    
+    container.innerHTML = html;
+}
+
+function generarNavegacionAlfabetica() {
+    const nav = document.getElementById('alphabetNav');
+    if (!nav) return;
+    
+    const letrasConProductos = new Set(
+        DATOS.productos.map(p => p.nombre. charAt(0).toUpperCase())
+    );
+    
+    const alfabeto = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'. split('');
+    
+    nav.innerHTML = alfabeto.map(letra => {
+        const tieneProductos = letrasConProductos.has(letra);
+        return `
+            <a href="#letra-${letra}" class="${tieneProductos ?  '' : 'disabled'}">
+                ${letra}
+            </a>
+        `;
+    }).join('');
+}

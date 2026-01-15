@@ -1,0 +1,134 @@
+/* ═══════════════════════════════════════════════════════════════
+   📦 BASE DE DATOS DE PRODUCTOS - MEXICOPOLY APPS
+   ═══════════════════════════════════════════════════════════════
+   
+   🔧 INSTRUCCIONES PARA AGREGAR PRODUCTOS: 
+   
+   1. Copia un objeto de producto existente
+   2. Modifica los campos según tu nuevo producto
+   3. Asegúrate de usar una categoría existente o crea una nueva
+   
+   CAMPOS DISPONIBLES:
+   - id: Número único (incrementa el último)
+   - nombre:  Nombre del producto
+   - categoria: Una de las categorías definidas abajo
+   - descripcion: Descripción corta
+   - caracteristicas: Array de características (máx 4)
+   - icono: Emoji representativo
+   - rating: Número del 1 al 5
+   - badge: "destacado", "top", "nuevo", "oferta", "hot" o null
+   - precio: Precio en pesos (sin símbolo)
+   
+   ═══════════════════════════════════════════════════════════════ */
+
+const DATOS = {
+    
+    // ═══════════════════════════════════════════════════════════
+    // 📂 CATEGORÍAS
+    // ═══════════════════════════════════════════════════════════
+    categorias: [
+        { id: "ofimatica", nombre: "Ofimática", icono: "📊", color: "#3b82f6" },
+        { id: "diseno", nombre: "Diseño", icono: "🎨", color: "#8b5cf6" },
+        { id: "seguridad", nombre:  "Seguridad", icono: "🔒", color: "#22c55e" },
+        { id:  "juegos", nombre: "Juegos", icono: "🎮", color: "#ef4444" },
+        { id: "desarrollo", nombre: "Desarrollo", icono:  "💻", color: "#f97316" },
+        { id: "multimedia", nombre: "Multimedia", icono:  "🎬", color: "#ec4899" },
+        { id: "utilidades", nombre: "Utilidades", icono: "🛠️", color: "#64748b" },
+        { id: "educacion", nombre: "Educación", icono: "📚", color: "#0ea5e9" },
+    ],
+    
+    // ═══════════════════════════════════════════════════════════
+    // 📦 PRODUCTOS
+    // ═══════════════════════════════════════════════════════════
+    productos: [
+        
+        // ─────────────────────────────────────────────────────────
+        // 📊 OFIMÁTICA
+        // ─────────────────────────────────────────────────────────
+        {
+            id: 1,
+            nombre:  "Microsoft Office 2024 Pro Plus",
+            categoria:  "ofimatica",
+            descripcion: "La suite definitiva para productividad profesional.",
+            caracteristicas: [
+                "Word, Excel, PowerPoint, Outlook incluidos",
+                "Access y Publisher incluidos",
+                "Licencia permanente sin suscripción",
+                "Compatible Windows 10/11"
+            ],
+            icono: "📝",
+            rating:  4.9,
+            badge: "destacado",
+            precio: 899
+        },
+        {
+            id: 2,
+            nombre: "Microsoft Office 2021 Pro Plus",
+            categoria:  "ofimatica",
+            descripcion: "Suite completa con licencia perpetua.",
+            caracteristicas: [
+                "Todas las apps de Office incluidas",
+                "Sin pagos mensuales",
+                "Activación de por vida",
+                "Estabilidad garantizada"
+            ],
+            icono:  "📊",
+            rating:  4.8,
+            badge: "top",
+            precio:  699
+        },
+        {
+            id: 3,
+            nombre: "Microsoft Office 365",
+            categoria: "ofimatica",
+            descripcion:  "Office en la nube con 1TB de almacenamiento.",
+            caracteristicas: [
+                "1TB en OneDrive incluido",
+                "Instala en 5 dispositivos",
+                "Siempre actualizado",
+                "Apps móviles incluidas"
+            ],
+            icono:  "☁️",
+            rating: 4.7,
+            badge: "nuevo",
+            precio: 599
+        },
+        {
+            id: 4,
+            nombre: "MobiOffice",
+            categoria: "ofimatica",
+            descripcion:  "Alternativa ligera para equipos básicos.",
+            caracteristicas: [
+                "Ideal para PCs con pocos recursos",
+                "Compatible con formatos Office",
+                "Rápido y eficiente"
+            ],
+            icono: "📱",
+            rating: 4.3,
+            badge:  null,
+            precio:  299
+        },
+        
+        // ─────────────────────────────────────────────────────────
+        // 🎨 DISEÑO
+        // ─────────────────────────────────────────────────────────
+        {
+            id: 5,
+            nombre: "Adobe Photoshop 2024",
+            categoria: "diseno",
+            descripcion: "El estándar mundial en edición de imágenes.",
+            caracteristicas: [
+                "IA generativa integrada",
+                "Herramientas profesionales",
+                "Compatibilidad con todos los formatos",
+                "Neural Filters avanzados"
+            ],
+            icono: "🖼️",
+            rating: 4.9,
+            badge:  "destacado",
+            precio: 1299
+        },
+        {
+            id:  6,
+            nombre: "Adobe Illustrator 2024",
+            categoria:  "

@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canva Pro - Planes y Precios | MexicoPoly - Apps</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        .pricing-hero {
+            background: linear-gradient(135deg, rgba(123, 44, 191, 0.95) 0%, rgba(90, 24, 154, 0.95) 50%, rgba(36, 0, 70, 0.95) 100%),
+                        url('https://images.unsplash.com/photo-1561070791-2526d30994b5?w=1600&q=80') center/cover;
+            padding: 80px 0 50px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: moveBackground 20s linear infinite;
+            opacity: 0.3;
+        }
+        
+        @keyframes moveBackground {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+        
+        .pricing-hero .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .pricing-hero h1 {
+            font-size: 36px;
+            margin-bottom: 12px;
+            background: linear-gradient(90deg, #fff, #e0aaff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .pricing-hero p {
+            font-size: 16px;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .pricing-section {
+            padding: 40px 0;
+            background: var(--bg-light);
+        }
+        
+        .pricing-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+        
+        .pricing-tab {
+            padding: 10px 24px;
+            border: 2px solid var(--border-color);
+            background: var(--bg-card);
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            color: var(--text-primary);
+        }
+        
+        .pricing-tab:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+        
+        .pricing-tab.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .pricing-card {
+            background: var(--bg-card);
+            border-radius: 16px;
+            padding: 20px;
+            border: 2px solid var(--border-color);
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+            border-color: var(--primary);
+        }
+        
+        .pricing-card.recommended {
+            border-color: #f97316;
+            background: linear-gradient(135deg, rgba(249, 115, 22, 0.05), transparent);
+        }
+        
+        .pricing-card.recommended::before {
+            content: '⭐ RECOMENDADO';
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: linear-gradient(90deg, #f97316, #fb923c);
+            color: white;
+            padding: 6px 50px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            transform: rotate(45deg);
+            box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4);
+        }
+        
+        .pricing-header {
+            text-align: center;
+            padding-bottom: 16px;
+            border-bottom: 2px solid var(--border-color);
+            margin-bottom: 16px;
+        }
+        
+        .pricing-type {
+            font-size: 11px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+        
+        .pricing-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+        }
+        
+        .pricing-price {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 6px;
+        }
+        
+        .pricing-price span {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+        
+        .pricing-subtitle {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+        
+        .pricing-features li {
+            padding: 8px 0;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            color: var(--text-primary);
+            font-size: 14px;
+        }
+        
+        .pricing-features li::before {
+            content: '✓';
+            color: #22c55e;
+            font-weight: 700;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+        
+        .pricing-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .pricing-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
+        }
+        
+        .pricing-note {
+            text-align: center;
+            margin-top: 12px;
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+        
+        .account-types {
+            background: var(--bg-card);
+            padding: 40px 0;
+            margin-top: 40px;
+        }
+        
+        .account-types h2 {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 32px;
+            color: var(--text-primary);
+        }
+        
+        .account-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .account-card {
+            background: linear-gradient(135deg, var(--bg-light), var(--bg-card));
+            padding: 24px;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+        }
+        
+        .account-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-primary);
+        }
+        
+        .account-card p {
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+        
+        .account-card ul {
+            list-style: none;
+        }
+        
+        .account-card ul li {
+            padding: 6px 0;
+            color: var(--text-primary);
+            font-size: 13px;
+            padding-left: 20px;
+            position: relative;
+        }
+        
+        .account-card ul li::before {
+            content: '•';
+            position: absolute;
+            left: 8px;
+            color: var(--primary);
+            font-size: 20px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .pricing-hero h1 {
+                font-size: 32px;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 16px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .pricing-hero {
+                padding: 60px 0 40px;
+            }
+            
+            .pricing-hero h1 {
+                font-size: 28px;
+            }
+            
+            .pricing-hero p {
+                font-size: 14px;
+            }
+            
+            .pricing-section {
+                padding: 30px 0;
+            }
+            
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .pricing-tabs {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .pricing-tab {
+                width: 100%;
+                padding: 10px 20px;
+            }
+            
+            .account-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            
+            .account-types {
+                padding: 32px 0;
+                margin-top: 32px;
+            }
+            
+            .account-types h2 {
+                font-size: 24px;
+                margin-bottom: 24px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .pricing-hero {
+                padding: 50px 0 30px;
+            }
+            
+            .pricing-hero h1 {
+                font-size: 24px;
+            }
+            
+            .pricing-card {
+                padding: 16px;
+            }
+            
+            .pricing-price {
+                font-size: 28px;
+            }
+            
+            .pricing-name {
+                font-size: 18px;
+            }
+            
+            .pricing-features li {
+                font-size: 13px;
+                padding: 6px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVEGACIÓN -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <div class="logo-dots">
+                        <span></span><span></span><span></span>
+                        <span></span><span></span><span></span>
+                        <span></span><span></span><span></span>
+                    </div>
+                </div>
+                <span class="logo-text">MexicoPoly - Apps</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="../public/index.html">Inicio</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li><a href="lista-az.html">Lista A-Z</a></li>
+                <li><a href="canva.html" class="active">Canva</a></li>
+                <li><a href="educativo.html">Educativo</a></li>
+                <li><a href="documentos.html">Documentos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+            <div class="nav-right">
+                <div class="search-box">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                    <input type="text" placeholder="Buscar software..." id="searchInput">
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="pricing-hero">
+        <div class="container">
+            <h1>
+                🎨 Canva Pro - Planes y Precios
+            </h1>
+            <p>Diseña como profesional. Elige el plan que mejor se adapte a tus necesidades.</p>
+        </div>
+    </section>
+
+    <!-- PRICING TABS -->
+    <section class="pricing-section">
+        <div class="container">
+            <div class="pricing-tabs">
+                <button class="pricing-tab active" onclick="filterPlans('all')">Todos los Planes</button>
+                <button class="pricing-tab" onclick="filterPlans('publica')">Cuentas Públicas</button>
+                <button class="pricing-tab" onclick="filterPlans('privada')">Cuentas Privadas</button>
+            </div>
+
+            <div class="pricing-grid" id="pricingGrid">
+                <!-- Mensual - Pública -->
+                <div class="pricing-card" data-type="publica">
+                    <div class="pricing-header">
+                        <div class="pricing-icon">
+                            <span class="icon-text icon-canva">C</span>
+                        </div>
+                        <div class="pricing-type">Mensual - Pública</div>
+                        <h3 class="pricing-name">Canva Pro</h3>
+                        <div class="pricing-price">$49 <span>MXN/mes</span></div>
+                        <p class="pricing-subtitle">Lista para usar, lista para uso ocasional</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Cuenta compartida</li>
+                        <li>Acceso a plantillas premium</li>
+                        <li>Elimina fondos de imágenes</li>
+                        <li>Redimensionar diseños con un clic</li>
+                    </ul>
+                    <button class="pricing-btn" onclick="contactarWhatsApp('Canva Pro Mensual - Pública $49/mes')">Comprar Ahora</button>
+                    <p class="pricing-note">Renovación mensual</p>
+                </div>
+
+                <!-- Anual - Pública -->
+                <div class="pricing-card" data-type="publica">
+                    <div class="pricing-header">
+                        <div class="pricing-icon">
+                            <span class="icon-text icon-canva">C</span>
+                        </div>
+                        <div class="pricing-type">Anual - Pública</div>
+                        <h3 class="pricing-name">Canva Pro</h3>
+                        <div class="pricing-price">$129 <span>MXN/año</span></div>
+                        <p class="pricing-subtitle">Solo para uso ocasional, pública</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Pago único anual</li>
+                        <li>Cuenta compartida</li>
+                        <li>Todas las funciones premium</li>
+                        <li>Mejor precio por mes ($10.75/mes)</li>
+                    </ul>
+                    <button class="pricing-btn" onclick="contactarWhatsApp('Canva Pro Anual - Pública $129/año')">Comprar Ahora</button>
+                    <p class="pricing-note">Equivale a $10.75/mes</p>
+                </div>
+
+                <!-- Mensual - Privada -->
+                <div class="pricing-card" data-type="privada">
+                    <div class="pricing-header">
+                        <div class="pricing-icon">
+                            <span class="icon-text icon-canva">C</span>
+                        </div>
+                        <div class="pricing-type">Mensual - Privada</div>
+                        <h3 class="pricing-name">Canva Pro</h3>
+                        <div class="pricing-price">$60 <span>MXN/mes</span></div>
+                        <p class="pricing-subtitle">Mayor privacidad, control total y seguridad</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Cuenta personal</li>
+                        <li>Control total del perfil</li>
+                        <li>Sin compartir con otros usuarios</li>
+                        <li>Mayor seguridad de tus diseños</li>
+                    </ul>
+                    <button class="pricing-btn" onclick="contactarWhatsApp('Canva Pro Mensual - Privada $60/mes')">Comprar Ahora</button>
+                    <p class="pricing-note">Renovación mensual</p>
+                </div>
+
+                <!-- Semestral - Privada -->
+                <div class="pricing-card" data-type="privada">
+                    <div class="pricing-header">
+                        <div class="pricing-icon">
+                            <span class="icon-text icon-canva">C</span>
+                        </div>
+                        <div class="pricing-type">Semestral - Privada</div>
+                        <h3 class="pricing-name">Canva Pro</h3>
+                        <div class="pricing-price">$149 <span>MXN/semestre</span></div>
+                        <p class="pricing-subtitle">Mayor privacidad, control total y seguridad</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Pago único semestral</li>
+                        <li>Cuenta 100% privada</li>
+                        <li>6 meses de acceso completo</li>
+                        <li>Equivale a $24.83/mes</li>
+                    </ul>
+                    <button class="pricing-btn" onclick="contactarWhatsApp('Canva Pro Semestral - Privada $149/semestre')">Comprar Ahora</button>
+                    <p class="pricing-note">6 meses de acceso</p>
+                </div>
+
+                <!-- Anual - Privada ⭐ RECOMENDADO -->
+                <div class="pricing-card recommended" data-type="privada">
+                    <div class="pricing-header">
+                        <div class="pricing-icon">
+                            <span class="icon-text icon-canva">C</span>
+                        </div>
+                        <div class="pricing-type">Anual - Privada</div>
+                        <h3 class="pricing-name">Canva Pro</h3>
+                        <div class="pricing-price">$199 <span>MXN/año</span></div>
+                        <p class="pricing-subtitle">Mayor privacidad, control total y seguridad</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Pago único anual</li>
+                        <li>Cuenta 100% privada</li>
+                        <li>Mejor relación calidad-precio</li>
+                        <li>Control total de tu cuenta</li>
+                        <li>Equivale a $16.58/mes</li>
+                    </ul>
+                    <button class="pricing-btn" onclick="contactarWhatsApp('Canva Pro Anual - Privada $199/año (RECOMENDADO)')">Comprar Ahora</button>
+                    <p class="pricing-note">⭐ Más vendido - Mejor precio</p>
+                </div>
+
+                <!-- 2 años - Privada -->
+                <div class="pricing-card" data-type="privada">
+                    <div class="pricing-header">
+                        <div class="pricing-icon">
+                            <span class="icon-text icon-canva">C</span>
+                        </div>
+                        <div class="pricing-type">2 años - Privada</div>
+                        <h3 class="pricing-name">Canva Pro</h3>
+                        <div class="pricing-price">$349 <span>MXN/2 años</span></div>
+                        <p class="pricing-subtitle">Mayor privacidad, control total y seguridad</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Pago único</li>
+                        <li>Cuenta privada por 2 años completos</li>
+                        <li>Máximo ahorro a largo plazo</li>
+                        <li>Equivale a $14.54/mes</li>
+                    </ul>
+                    <button class="pricing-btn" onclick="contactarWhatsApp('Canva Pro 2 años - Privada $349')">Comprar Ahora</button>
+                    <p class="pricing-note">24 meses de acceso</p>
+                </div>
+
+                <!-- 3 años - Privada -->
+                <div class="pricing-card" data-type="privada">
+                    <div class="pricing-header">
+                        <div class="pricing-icon">
+                            <span class="icon-text icon-canva">C</span>
+                        </div>
+                        <div class="pricing-type">3 años - Privada</div>
+                        <h3 class="pricing-name">Canva Pro</h3>
+                        <div class="pricing-price">$499 <span>MXN/3 años</span></div>
+                        <p class="pricing-subtitle">Mayor privacidad, control total y seguridad</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Pago único</li>
+                        <li>Cuenta privada por 3 años completos</li>
+                        <li>El mejor precio por mes</li>
+                        <li>Equivale a $13.86/mes</li>
+                    </ul>
+                    <button class="pricing-btn" onclick="contactarWhatsApp('Canva Pro 3 años - Privada $499')">Comprar Ahora</button>
+                    <p class="pricing-note">36 meses de acceso - Máximo ahorro</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TIPOS DE CUENTA -->
+    <section class="account-types">
+        <div class="container">
+            <h2>💡 Diferencia entre Tipos de Cuenta</h2>
+            <div class="account-grid">
+                <div class="account-card">
+                    <h3>✨ Cuentas Públicas</h3>
+                    <p>Las cuentas compartidas son económicas y perfectas para uso ocasional. Listas para usar sin complicaciones.</p>
+                    <ul>
+                        <li>Acceso inmediato</li>
+                        <li>Precio más económico</li>
+                        <li>Ideal para uso personal casual</li>
+                        <li>Todas las funciones premium</li>
+                    </ul>
+                </div>
+                <div class="account-card">
+                    <h3>🔒 Cuentas Privadas</h3>
+                    <p>Cuentas 100% personales con control total. Tú mandas, tú controlas, tú decides.</p>
+                    <ul>
+                        <li>Cuenta exclusiva para ti</li>
+                        <li>Mayor seguridad de tus diseños</li>
+                        <li>Control total del perfil</li>
+                        <li>Sin compartir con nadie</li>
+                        <li>Ideal para profesionales</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <p>© 2026 MexicoPoly Apps. Todos los derechos reservados.</p>
+                <span class="secure-badge">🔒 Pagos Seguros</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Flotante -->
+    <a href="https://wa.me/527296901573" class="whatsapp-float" target="_blank" rel="noopener noreferrer" title="Contactar por WhatsApp" aria-label="Contactar por WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
+
+    <script src="../scripts/datos.js"></script>
+    <script>
+        function filterPlans(type) {
+            const cards = document.querySelectorAll('.pricing-card');
+            const tabs = document.querySelectorAll('.pricing-tab');
+            
+            tabs.forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            cards.forEach(card => {
+                if (type === 'all') {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = card.dataset.type === type ? 'block' : 'none';
+                }
+            });
+        }
+        
+        function contactarWhatsApp(plan) {
+            const mensaje = `Hola! Me interesa el plan: ${plan}`;
+            const url = `https://wa.me/527296901573?text=${encodeURIComponent(mensaje)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
+
